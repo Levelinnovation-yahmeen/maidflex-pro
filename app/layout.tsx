@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://maidflex-pro.snug-civet-5353.chatgpt.site'),
+  metadataBase: new URL('https://maidflex-pro.yahmzar.chatgpt.site'),
   title: 'MaidFlex Pro | Richmond Commercial + Rockies Vacation Rentals',
   description:
     'Commercial cleaning for Richmond facilities and documented vacation-rental turnovers across the Rocky Mountain region.',
@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     ],
     locale: 'en_US',
     type: 'website',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   twitter: {
     card: 'summary_large_image',

@@ -125,8 +125,8 @@ export default function Home() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="#markets">Markets</a>
-          <a href="#richmond">Richmond</a>
-          <a href="#rockies">The Rockies</a>
+          <a href="/commercial/richmond">Richmond</a>
+          <a href="/vacation-rentals/rockies">The Rockies</a>
           <a href="#difference">Why MaidFlex</a>
         </nav>
 
@@ -146,10 +146,10 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <a className="button" href="#richmond">
+            <a className="button" href="/commercial/richmond">
               Richmond commercial <span aria-hidden="true">↗</span>
             </a>
-            <a className="text-link" href="#rockies">
+            <a className="text-link" href="/vacation-rentals/rockies">
               Rockies vacation rentals <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -180,13 +180,13 @@ export default function Home() {
       </section>
 
       <section className="market-selector" id="markets" aria-label="MaidFlex Pro markets">
-        <a href="#richmond" className="market-choice">
+        <a href="/commercial/richmond" className="market-choice">
           <span>01 · Richmond, Virginia</span>
           <h2>Commercial cleaning</h2>
           <p>Recurring facility service, post-construction work, and responsive cleaning for local businesses.</p>
           <strong>Explore Richmond service ↘</strong>
         </a>
-        <a href="#rockies" className="market-choice market-choice-dark">
+        <a href="/vacation-rentals/rockies" className="market-choice market-choice-dark">
           <span>02 · Rocky Mountain region</span>
           <h2>Vacation-rental turnovers</h2>
           <p>Deadline-driven, guest-ready resets for vacation-rental owners and property managers.</p>
@@ -237,7 +237,7 @@ export default function Home() {
               <h3>{name}</h3>
               <strong>{line}</strong>
               <p>{copy}</p>
-              <a href="#contact">
+              <a href="/commercial/richmond#walkthrough">
                 Request a walkthrough <span aria-hidden="true">↗</span>
               </a>
             </article>
@@ -254,7 +254,7 @@ export default function Home() {
             hospitality turnover operation: reset the property, surface issues,
             and get it guest-ready before the next arrival.
           </p>
-          <a className="button" href="#contact">
+          <a className="button" href="/vacation-rentals/rockies#turnover-plan">
             Build a turnover plan <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -362,7 +362,7 @@ export default function Home() {
               <li>Restock checks and visible issue reporting</li>
               <li>Completion images and quality tracking</li>
             </ul>
-            <a className="button button-dark" href="#contact">
+            <a className="button button-dark" href="/vacation-rentals/rockies#turnover-plan">
               Start with a trial turnover <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -435,7 +435,7 @@ export default function Home() {
           <span>Cleaning professionals</span>
           <strong>Want commercial jobs without chasing leads?</strong>
         </div>
-        <a href="mailto:info@maidflexpro.com?subject=Commercial%20Cleaning%20Pro%20Application">
+        <a href="/cleaners/apply">
           Apply to join the network <span aria-hidden="true">→</span>
         </a>
       </section>
@@ -453,6 +453,8 @@ export default function Home() {
         <div>
           <a href="tel:+18048029639">804-802-9639</a>
           <a href="mailto:info@maidflexpro.com">info@maidflexpro.com</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Website terms</a>
           <span>© 2026 MaidFlex Pro</span>
         </div>
       </footer>
