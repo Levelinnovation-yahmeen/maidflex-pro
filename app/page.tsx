@@ -1,82 +1,106 @@
 import Image from 'next/image';
 import {
   BadgeCheck,
+  BriefcaseBusiness,
   Building2,
-  CalendarDays,
+  CalendarClock,
   Camera,
+  CarFront,
+  CheckCircle2,
+  ClipboardCheck,
+  Dumbbell,
   HardHat,
-  Home as HomeIcon,
-  KeyRound,
-  Sparkles,
-  WalletCards,
+  Landmark,
+  School,
+  ShieldCheck,
+  Stethoscope,
+  UsersRound,
 } from 'lucide-react';
 import { RequestForm } from './request-form';
 
-const services = [
+const industries = [
   {
-    icon: HomeIcon,
-    title: 'Residential',
-    kicker: 'Where clean feels like home.',
-    copy: 'From cozy condos to full-family homes, our pros bring shine, structure, and peace of mind.',
-  },
-  {
-    icon: KeyRound,
-    title: 'Move-in / Move-out',
-    kicker: 'Leave it better than you found it.',
-    copy: 'Handing over keys or starting fresh? We scrub every corner so you can move without the mess.',
-  },
-  {
-    icon: HardHat,
-    title: 'Post-construction',
-    kicker: 'Dust out. Details in.',
-    copy: 'We handle the heavy cleanup after the build so your new space is ready for the spotlight.',
+    icon: Dumbbell,
+    name: 'Gyms & fitness',
+    line: 'Sweat is power. Clean is trust.',
+    copy: 'Detail-driven service for floors, equipment zones, locker rooms, restrooms, and the member experience.',
   },
   {
     icon: Building2,
-    title: 'Commercial',
-    kicker: 'Clean that means business.',
-    copy: 'Reliable, scalable cleaning for offices, storefronts, gyms, and busy commercial spaces.',
+    name: 'Property management',
+    line: 'From one unit to dozens.',
+    copy: 'Turnovers, common areas, move-ins, and responsive cleaning that flexes with your portfolio.',
   },
   {
-    icon: Sparkles,
-    title: 'Specialty',
-    kicker: 'We do the extra stuff too.',
-    copy: 'After-party, graduation chaos, surprise guests? Tell us what happened. We will handle the reset.',
+    icon: Stethoscope,
+    name: 'Medical & dental',
+    line: 'Clean spaces build confidence.',
+    copy: 'Consistent, discreet service for patient-facing facilities where presentation and reliability matter.',
+  },
+  {
+    icon: School,
+    name: 'Daycares & schools',
+    line: 'Ready for the next busy day.',
+    copy: 'High-touch cleaning plans with green and non-toxic product options available upon request.',
+  },
+  {
+    icon: BriefcaseBusiness,
+    name: 'Offices & coworking',
+    line: 'Professional from the front door in.',
+    copy: 'Flexible recurring schedules for teams that need the workplace handled before business begins.',
+  },
+  {
+    icon: Landmark,
+    name: 'Banks & dealerships',
+    line: 'Presentation without disruption.',
+    copy: 'Security-conscious service for glass, showrooms, customer areas, workspaces, and daily turnover.',
   },
 ];
 
 const steps = [
-  ['Choose your cleaning type', 'Home, move, construction, commercial, or something special.'],
-  ['Show us the space', 'Upload photos or do a quick video walkthrough.'],
-  ['Get matched & priced', 'We confirm the scope, your pro, and a clear quote.'],
-  ['Enjoy the sparkle', 'Your team arrives ready. We handle the rest.'],
+  {
+    title: 'Walk the facility',
+    copy: 'We document square footage, floor types, restrooms, high-touch zones, access, and special requirements.',
+  },
+  {
+    title: 'Build the scope',
+    copy: 'You receive a clear service frequency, flat rate, supply plan, and launch path within 24 hours.',
+  },
+  {
+    title: 'Launch the crew',
+    copy: 'We confirm the team, schedule, access details, checklists, and the first-service expectations.',
+  },
+  {
+    title: 'Verify the work',
+    copy: 'Job updates, cleaner checklists, and completion images keep your team informed without follow-up chasing.',
+  },
 ];
 
 const faqs = [
   {
-    question: 'How are cleaning pros vetted?',
+    question: 'Can you quote our facility without a walkthrough?',
     answer:
-      'MaidFlex Pro reviews each cleaner before matching them with client work. Experience, reliability, professionalism, and service readiness all matter.',
+      'We quote after a walkthrough or a complete photo and video review. That protects you from vague estimates and gives the cleaning team a workable, accurate scope.',
   },
   {
-    question: 'What if I need to reschedule?',
+    question: 'Can MaidFlex handle multiple locations or unit turns?',
     answer:
-      'Plans change. Contact the team as early as possible and we will help move your appointment to another available time.',
+      'Yes. MaidFlex Pro is designed to scale from one facility or turnover to a recurring multi-location workload, with scope and access details documented for each site.',
   },
   {
-    question: 'Do I need to be home?',
+    question: 'Will we receive proof that service was completed?',
     answer:
-      'Not necessarily. You can share access instructions during the booking process, and we will confirm the details before your clean.',
+      'Your plan can include real-time job updates, completion images, and cleaner checklists so your team can verify progress without being on-site.',
   },
   {
-    question: 'How are services priced?',
+    question: 'Do you provide supplies?',
     answer:
-      'Pricing is based on the service type, size, condition, frequency, and any extras. You receive a clear quote before the job is finalized.',
+      'Supply responsibility is confirmed in the proposal. We account for product requirements, facility conditions, and any green or non-toxic preferences before launch.',
   },
   {
-    question: 'What is the Flex Plan?',
+    question: 'Can you handle urgent or one-time commercial work?',
     answer:
-      'The Flex Plan lets you pre-set recurring cleanings for preferred rates and easier scheduling, without a long-term commitment.',
+      'Yes, subject to crew availability and scope. MaidFlex Pro supports specialty, emergency, post-construction, and turnover work alongside recurring janitorial service.',
   },
 ];
 
@@ -95,135 +119,182 @@ export default function Home() {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#services">Services</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#flex-plan">Flex Plan</a>
-          <a href="#cleaners">For cleaners</a>
+          <a href="#industries">Industries</a>
+          <a href="#difference">Why MaidFlex</a>
+          <a href="#process">Our process</a>
+          <a href="#contact">Contact</a>
         </nav>
 
-        <a className="button button-small" href="#book">
-          Book a clean
+        <a className="button button-small" href="#contact">
+          Book a walkthrough
         </a>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">Richmond&apos;s flexible cleaning team</p>
-          <h1>Cleaning on your schedule. With zero hassle.</h1>
+          <p className="eyebrow">Commercial cleaning · Richmond, Virginia</p>
+          <h1>Clean operations start with a crew that shows up.</h1>
           <p className="hero-intro">
-            Book trusted pros in minutes. Tell us what needs cleaning, get a
-            clear quote, and lock in your clean.
+            Reliable commercial cleaning for high-traffic facilities. Clear
+            scopes, flexible schedules, and proof-of-service updates without
+            chasing anyone down.
           </p>
 
           <div className="hero-actions">
-            <a className="button" href="#book">
-              Book a clean <span aria-hidden="true">↗</span>
+            <a className="button" href="#contact">
+              Schedule a walkthrough <span aria-hidden="true">↗</span>
             </a>
-            <a className="text-link" href="#cleaners">
-              Apply to clean <span aria-hidden="true">→</span>
+            <a className="text-link" href="tel:+18048029639">
+              Call 804-802-9639 <span aria-hidden="true">→</span>
             </a>
           </div>
 
-          <div className="trust-row" aria-label="MaidFlex Pro benefits">
-            <span>Vetted pros</span>
-            <span>Clear quotes</span>
-            <span>Flexible scheduling</span>
+          <div className="trust-row" aria-label="MaidFlex Pro service standards">
+            <span>Fully insured crews</span>
+            <span>Quotes within 24 hours</span>
+            <span>Real-time job updates</span>
           </div>
         </div>
 
         <div className="hero-visual">
           <Image
-            src="/brand/maidflex-cleaning-team.png"
-            alt="A MaidFlex Pro cleaning team refreshing a bright living room"
+            src="/brand/maidflex-commercial-team.png"
+            alt="A MaidFlex Pro commercial cleaning crew servicing a modern facility"
             fill
-            sizes="(max-width: 900px) 100vw, 52vw"
+            sizes="(max-width: 900px) 100vw, 48vw"
             priority
           />
-          <div className="availability-card">
+          <div className="walkthrough-card">
             <span className="status-dot" aria-hidden="true" />
             <div>
-              <strong>Now booking</strong>
-              <span>Homes &amp; businesses</span>
+              <strong>Walkthroughs available</strong>
+              <span>Clear scope. Quote within 24 hours.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="service-ribbon" aria-label="Service promise">
-        <p>One trusted team. Every kind of clean.</p>
+      <section className="industry-ribbon" aria-label="Industries served">
+        <p>Built for Richmond&apos;s high-traffic facilities.</p>
         <div>
-          <span>Homes</span>
-          <span>Moves</span>
-          <span>New builds</span>
-          <span>Businesses</span>
+          <span>Gyms</span>
+          <span>Medical</span>
+          <span>Property managers</span>
+          <span>Daycares</span>
+          <span>Offices</span>
+          <span>Dealerships</span>
         </div>
       </section>
 
-      <section className="about section" id="about">
-        <div className="section-label">Why MaidFlex Pro</div>
-        <div className="about-grid">
-          <h2>Built for Cleaners.<br />Designed for Clients.</h2>
-          <div className="about-copy">
+      <section className="positioning section" id="difference">
+        <p className="section-label">The MaidFlex difference</p>
+        <div className="positioning-grid">
+          <h2>Your cleaner shouldn&apos;t become another vendor you manage.</h2>
+          <div className="positioning-copy">
             <p>
-              MaidFlex Pro isn&apos;t your typical cleaning company. We empower
-              cleaners with fair opportunities and flexible schedules while
-              giving customers seamless, transparent booking they can trust.
+              MaidFlex Pro is a tech-enabled, locally run commercial cleaning
+              partner built around consistency, transparency, and fast response.
+              We create the scope, coordinate the crew, and keep your team updated.
             </p>
-            <p className="brand-statement">
-              Real people. Real service. Smart systems that just work.
-            </p>
+            <div className="promise-row">
+              <span>Scalable coverage</span>
+              <span>Flexible scheduling</span>
+              <span>Documented quality</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="services section" id="services">
+      <section className="industries section" id="industries">
         <div className="section-heading">
           <div>
-            <p className="section-label">Services built around you</p>
-            <h2>One less thing<br />on your list.</h2>
+            <p className="section-label">Commercial specialties</p>
+            <h2>Cleaning built around how your facility works.</h2>
           </div>
           <p>
-            Book once or build a routine. Every service starts with a clear
-            scope and ends with a space that feels handled.
+            Different facilities have different pressure points. We scope the
+            work around traffic, timing, access, surfaces, and what your clients
+            notice first.
           </p>
         </div>
 
-        <div className="service-grid">
-          {services.map(({ icon: Icon, title, kicker, copy }, index) => (
-            <article className={`service-card service-card-${index + 1}`} key={title}>
-              <div className="service-icon" aria-hidden="true">
-                <Icon strokeWidth={1.8} />
+        <div className="industry-grid">
+          {industries.map(({ icon: Icon, name, line, copy }, index) => (
+            <article className="industry-card" key={name}>
+              <div className="industry-card-top">
+                <span>0{index + 1}</span>
+                <Icon aria-hidden="true" strokeWidth={1.7} />
               </div>
-              <div>
-                <p className="card-number">0{index + 1}</p>
-                <h3>{title}</h3>
-                <strong>{kicker}</strong>
-                <p>{copy}</p>
-              </div>
-              <a href="#book" aria-label={`Request a ${title} cleaning quote`}>
-                Get a quote <span aria-hidden="true">↗</span>
+              <h3>{name}</h3>
+              <strong>{line}</strong>
+              <p>{copy}</p>
+              <a href="#contact">
+                Request a walkthrough <span aria-hidden="true">↗</span>
               </a>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="process section" id="how-it-works">
-        <div className="process-intro">
-          <p className="section-label section-label-light">How it works</p>
-          <h2>From click to clean in four easy steps.</h2>
+      <section className="visibility section">
+        <div className="visibility-copy">
+          <p className="section-label section-label-light">Operational visibility</p>
+          <h2>Consistency you can see.</h2>
           <p>
-            Booking should feel easy. With MaidFlex Pro, it is.
+            Commercial cleaning breaks down when details live in texts, memory,
+            or assumptions. MaidFlex turns the job into a documented operating
+            plan your team and the crew can actually follow.
           </p>
-          <div className="process-icons" aria-hidden="true">
-            <CalendarDays />
-            <Camera />
-            <BadgeCheck />
-          </div>
+          <ul>
+            <li><ShieldCheck aria-hidden="true" /> Vetted, fully insured cleaning professionals</li>
+            <li><CalendarClock aria-hidden="true" /> Recurring, turnover, and responsive scheduling</li>
+            <li><Camera aria-hidden="true" /> Checklists, images, and real-time job updates</li>
+            <li><UsersRound aria-hidden="true" /> Coverage that scales with your workload</li>
+          </ul>
         </div>
 
-        <ol className="step-list">
-          {steps.map(([title, copy], index) => (
+        <div className="status-panel" aria-label="Example MaidFlex service status">
+          <div className="status-panel-head">
+            <div>
+              <span>Service status</span>
+              <strong>West Broad facility</strong>
+            </div>
+            <span className="live-pill">On track</span>
+          </div>
+          <ol>
+            <li className="complete">
+              <CheckCircle2 aria-hidden="true" />
+              <div><strong>Scope confirmed</strong><span>Zones, access, supplies</span></div>
+              <small>Done</small>
+            </li>
+            <li className="complete">
+              <CheckCircle2 aria-hidden="true" />
+              <div><strong>Crew assigned</strong><span>2 cleaning professionals</span></div>
+              <small>Done</small>
+            </li>
+            <li className="active">
+              <ClipboardCheck aria-hidden="true" />
+              <div><strong>Service checklist</strong><span>18 of 22 items complete</span></div>
+              <small>Live</small>
+            </li>
+            <li>
+              <Camera aria-hidden="true" />
+              <div><strong>Completion update</strong><span>Photos and sign-off</span></div>
+              <small>Next</small>
+            </li>
+          </ol>
+          <p>Illustrative workflow</p>
+        </div>
+      </section>
+
+      <section className="process section" id="process">
+        <div className="process-heading">
+          <p className="section-label">From walkthrough to launch</p>
+          <h2>No guessing.<br />No vague scopes.<br /><em>No chaos.</em></h2>
+        </div>
+
+        <ol className="process-list">
+          {steps.map(({ title, copy }, index) => (
             <li key={title}>
               <span>{index + 1}</span>
               <div>
@@ -235,75 +306,66 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="flex-section section" id="flex-plan">
-        <div className="flex-card">
-          <div className="flex-copy">
-            <p className="section-label">The Flex Plan</p>
-            <h2>Want a better rate? Flex with us.</h2>
+      <section className="portfolio section">
+        <div className="portfolio-card">
+          <div className="portfolio-icon" aria-hidden="true">
+            <Building2 />
+          </div>
+          <div>
+            <p className="section-label">Property management</p>
+            <h2>One unit or dozens. Same accountability.</h2>
+          </div>
+          <div className="portfolio-copy">
             <p>
-              Pre-set your monthly cleanings and lock in preferred pricing. No
-              long-term commitments—just consistency on your terms.
+              Turnovers, vacant units, common areas, and last-minute resets all
+              move on different timelines. MaidFlex gives property teams one
+              responsive cleaning partner built to flex with the workload.
             </p>
-            <a className="button button-dark" href="#book">
-              Start your Flex Plan <span aria-hidden="true">↗</span>
+            <ul>
+              <li>Vacant unit and pre-move-in cleans</li>
+              <li>Routine and responsive common-area service</li>
+              <li>Completion images and quality tracking</li>
+            </ul>
+            <a className="button button-dark" href="#contact">
+              Start with a trial clean <span aria-hidden="true">↗</span>
             </a>
           </div>
-
-          <div className="flex-benefits">
-            <div>
-              <CalendarDays aria-hidden="true" />
-              <span>01</span>
-              <h3>Choose frequency</h3>
-              <p>Weekly, bi-weekly, or monthly.</p>
-            </div>
-            <div>
-              <Sparkles aria-hidden="true" />
-              <span>02</span>
-              <h3>Customize anytime</h3>
-              <p>Add deep cleaning or extras as life changes.</p>
-            </div>
-            <div>
-              <WalletCards aria-hidden="true" />
-              <span>03</span>
-              <h3>Save automatically</h3>
-              <p>Recurring clients unlock preferred rates.</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="cleaners section" id="cleaners">
-        <div className="cleaner-heading">
-          <p className="section-label section-label-light">For cleaning pros</p>
-          <h2>Your work.<br />Your time.<br /><em>Your pay.</em></h2>
+      <section className="fit section">
+        <div className="fit-intro">
+          <p className="section-label section-label-light">Where we fit</p>
+          <h2>Your schedule.<br />Your standards.<br />One clear scope.</h2>
         </div>
-
-        <div className="cleaner-content">
-          <p>
-            Set your hours. Skip the paperwork. Get paid weekly. No chasing
-            leads and no back-and-forth—just booked jobs.
-          </p>
-          <ul>
-            <li><BadgeCheck aria-hidden="true" /> Choose the work that fits your life</li>
-            <li><BadgeCheck aria-hidden="true" /> We handle booking and customer support</li>
-            <li><BadgeCheck aria-hidden="true" /> Clear job details before you accept</li>
-          </ul>
-          <a
-            className="button"
-            href="mailto:info@maidflexpro.com?subject=Cleaning%20Pro%20Application"
-          >
-            Apply to clean <span aria-hidden="true">↗</span>
-          </a>
+        <div className="fit-grid">
+          <article>
+            <CalendarClock aria-hidden="true" />
+            <h3>Recurring janitorial</h3>
+            <p>One to seven days per week, aligned with your traffic and operating hours.</p>
+          </article>
+          <article>
+            <HardHat aria-hidden="true" />
+            <h3>Post-construction</h3>
+            <p>Dust, debris, detail cleaning, and final presentation before turnover.</p>
+          </article>
+          <article>
+            <CarFront aria-hidden="true" />
+            <h3>Specialty & urgent</h3>
+            <p>Event resets, emergency requests, showrooms, and high-priority one-time work.</p>
+          </article>
         </div>
       </section>
 
-      <section className="faq section" id="faq">
+      <section className="faq section">
         <div className="faq-heading">
-          <p className="section-label">Good questions</p>
-          <h2>Before we get<br />to the sparkle.</h2>
-          <p>Need something else? Call <a href="tel:+18048029639">804-802-9639</a>.</p>
+          <p className="section-label">Before the walkthrough</p>
+          <h2>Good questions.<br />Clear answers.</h2>
+          <p>
+            Need an answer now? Call{' '}
+            <a href="tel:+18048029639">804-802-9639</a>.
+          </p>
         </div>
-
         <div className="faq-list">
           {faqs.map(({ question, answer }) => (
             <details key={question}>
@@ -314,21 +376,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="booking section" id="book">
-        <div className="booking-intro">
-          <p className="section-label">Ready when you are</p>
-          <h2>Tell us what needs cleaning.</h2>
+      <section className="contact section" id="contact">
+        <div className="contact-intro">
+          <p className="section-label">Free facility walkthrough</p>
+          <h2>Show us the space. We&apos;ll build the plan.</h2>
           <p>
-            A few details now means a clearer quote and a faster match. We&apos;ll
-            take it from here.
+            Tell us what you manage and where the pressure points are. We&apos;ll
+            follow up to schedule a walkthrough and return a clear quote within
+            24 hours of the completed review.
           </p>
           <div className="contact-links">
             <a href="tel:+18048029639">804-802-9639</a>
             <a href="mailto:info@maidflexpro.com">info@maidflexpro.com</a>
           </div>
         </div>
-
         <RequestForm />
+      </section>
+
+      <section className="recruiting-strip" id="cleaners">
+        <div>
+          <BadgeCheck aria-hidden="true" />
+          <span>Cleaning professionals</span>
+          <strong>Want commercial jobs without chasing leads?</strong>
+        </div>
+        <a href="mailto:info@maidflexpro.com?subject=Commercial%20Cleaning%20Pro%20Application">
+          Apply to join the network <span aria-hidden="true">→</span>
+        </a>
       </section>
 
       <footer>
@@ -340,7 +413,7 @@ export default function Home() {
             height={75}
           />
         </a>
-        <p>Cleaning on your schedule. With zero hassle.</p>
+        <p>Commercial cleaning built around your operation.</p>
         <div>
           <a href="tel:+18048029639">804-802-9639</a>
           <a href="mailto:info@maidflexpro.com">info@maidflexpro.com</a>

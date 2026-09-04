@@ -8,15 +8,17 @@ export function RequestForm() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const name = String(form.get('name') || '');
+    const contact = String(form.get('contact') || '');
+    const company = String(form.get('company') || '');
     const email = String(form.get('email') || '');
     const phone = String(form.get('phone') || '');
-    const service = String(form.get('service') || '');
-    const timing = String(form.get('timing') || '');
+    const facility = String(form.get('facility') || '');
+    const size = String(form.get('size') || '');
+    const frequency = String(form.get('frequency') || '');
     const details = String(form.get('details') || '');
-    const subject = encodeURIComponent(`Cleaning request from ${name}`);
+    const subject = encodeURIComponent(`Commercial walkthrough request - ${company}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\nTiming: ${timing}\n\nDetails:\n${details}`,
+      `Contact: ${contact}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nFacility: ${facility}\nApprox. size: ${size}\nDesired frequency: ${frequency}\n\nFacility details:\n${details}`,
     );
 
     setSent(true);
@@ -24,60 +26,75 @@ export function RequestForm() {
   }
 
   return (
-    <form className="quote-form" onSubmit={handleSubmit}>
+    <form className="walkthrough-form" onSubmit={handleSubmit}>
       <div className="field-row">
         <label>
           Your name
-          <input name="name" autoComplete="name" placeholder="First and last name" required />
+          <input name="contact" autoComplete="name" placeholder="First and last name" required />
         </label>
         <label>
-          Email
-          <input name="email" type="email" autoComplete="email" placeholder="you@email.com" required />
+          Company
+          <input name="company" autoComplete="organization" placeholder="Business or property name" required />
         </label>
       </div>
       <div className="field-row">
+        <label>
+          Work email
+          <input name="email" type="email" autoComplete="email" placeholder="you@company.com" required />
+        </label>
         <label>
           Phone
           <input name="phone" type="tel" autoComplete="tel" placeholder="(804) 555-0000" required />
         </label>
+      </div>
+      <div className="field-row field-row-three">
         <label>
-          Cleaning type
-          <select name="service" defaultValue="" required>
-            <option value="" disabled>Select a service</option>
-            <option>Residential</option>
-            <option>Move-in / Move-out</option>
-            <option>Post-construction</option>
-            <option>Commercial</option>
-            <option>Specialty</option>
+          Facility type
+          <select name="facility" defaultValue="" required>
+            <option value="" disabled>Select one</option>
+            <option>Gym or fitness center</option>
+            <option>Property or apartment community</option>
+            <option>Medical or dental office</option>
+            <option>Daycare or school</option>
+            <option>Office or coworking space</option>
+            <option>Bank or financial institution</option>
+            <option>Auto dealership</option>
+            <option>Construction site</option>
+            <option>Other commercial facility</option>
+          </select>
+        </label>
+        <label>
+          Approx. square feet
+          <input name="size" inputMode="numeric" placeholder="e.g. 8,500" required />
+        </label>
+        <label>
+          Service frequency
+          <select name="frequency" defaultValue="" required>
+            <option value="" disabled>Select one</option>
+            <option>One-time or trial clean</option>
+            <option>1x per week</option>
+            <option>2-3x per week</option>
+            <option>5-7x per week</option>
+            <option>Not sure yet</option>
           </select>
         </label>
       </div>
       <label>
-        When do you need it?
-        <select name="timing" defaultValue="" required>
-          <option value="" disabled>Select timing</option>
-          <option>As soon as possible</option>
-          <option>Within the next week</option>
-          <option>Within the next month</option>
-          <option>I am flexible</option>
-        </select>
-      </label>
-      <label>
-        Tell us about the space
+        What should we know before the walkthrough?
         <textarea
           name="details"
           rows={4}
-          placeholder="Property size, condition, frequency, special requests..."
+          placeholder="Number of locations, current pain points, access hours, restrooms, floor types, or preferred start date..."
           required
         />
       </label>
       <button className="button form-button" type="submit">
-        Request my quote <span aria-hidden="true">↗</span>
+        Request my walkthrough <span aria-hidden="true">↗</span>
       </button>
       <p className="form-note" aria-live="polite">
         {sent
-          ? 'Your request is ready to send in your email app.'
-          : 'No spam. Just the details we need to quote your clean.'}
+          ? 'Your walkthrough request is ready to send in your email app.'
+          : 'No vague estimates. We scope the facility before final pricing.'}
       </p>
     </form>
   );

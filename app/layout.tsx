@@ -3,13 +3,13 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://maidflex-pro.snug-civet-5353.chatgpt.site'),
-  title: 'MaidFlex Pro | Cleaning on your schedule',
+  title: 'MaidFlex Pro | Commercial Cleaning in Richmond, VA',
   description:
-    'Flexible residential and commercial cleaning from trusted professionals serving the Richmond area.',
+    'Reliable commercial cleaning for Richmond businesses, with clear scopes, flexible schedules, and documented service updates.',
   openGraph: {
-    title: 'MaidFlex Pro | Cleaning on your schedule',
+    title: 'MaidFlex Pro | Commercial Cleaning in Richmond, VA',
     description:
-      'Book trusted cleaning pros for your home, move, construction project, or business.',
+      'Clean operations start with a crew that shows up. Schedule a commercial facility walkthrough.',
     url: '/',
     siteName: 'MaidFlex Pro',
     images: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'MaidFlex Pro - Cleaning on your schedule. With zero hassle.',
+        alt: 'MaidFlex Pro - Commercial cleaning for Richmond businesses.',
       },
     ],
     locale: 'en_US',
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MaidFlex Pro | Cleaning on your schedule',
+    title: 'MaidFlex Pro | Commercial Cleaning in Richmond, VA',
     description:
-      'Book trusted cleaning pros for your home, move, construction project, or business.',
+      'Clean operations start with a crew that shows up. Schedule a commercial facility walkthrough.',
     images: ['/og.png'],
   },
 };
