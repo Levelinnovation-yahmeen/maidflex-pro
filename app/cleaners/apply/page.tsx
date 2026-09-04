@@ -38,7 +38,7 @@ export default function CleanerApplicationPage() {
           <p className="coverage-note coverage-note-dark">Applications are reviewed against active service areas, current demand and each property&apos;s requirements.</p>
         </div>
         <div className="route-image">
-          <Image src="/brand/maidflex-cleaning-team.png" alt="Independent cleaning professionals working as a coordinated team" fill sizes="(max-width: 900px) 100vw, 48vw" priority />
+          <Image src="/brand/maidflex-professional-ready.jpg" alt="A cleaning professional prepared with equipment and supplies" fill sizes="(max-width: 900px) 100vw, 48vw" priority />
         </div>
       </section>
 
@@ -47,6 +47,22 @@ export default function CleanerApplicationPage() {
         <span><CalendarCheck aria-hidden="true" /> Clear property schedules</span>
         <span><BadgeCheck aria-hidden="true" /> Documented expectations</span>
         <span><ShieldCheck aria-hidden="true" /> Professional standards</span>
+      </section>
+
+      <section className="section route-image-story professional-image-story" id="professional-network" aria-labelledby="professional-network-title">
+        <div className="route-image-story-copy">
+          <p className="section-label section-label-light">Built for professionals</p>
+          <h2 id="professional-network-title">Independent doesn&apos;t have to mean unsupported.</h2>
+          <p>MaidFlex brings the confirmed scope, schedule and property expectations so experienced professionals can focus on delivering the work.</p>
+        </div>
+        <figure className="route-story-image route-story-image-wide">
+          <Image src="/brand/maidflex-team-service.jpg" alt="A coordinated cleaning team completing a property service" fill sizes="(max-width: 760px) 100vw, 44vw" />
+          <figcaption>Opportunities sized for individuals and teams</figcaption>
+        </figure>
+        <figure className="route-story-image">
+          <Image src="/brand/maidflex-coordination.jpg" alt="A cleaning professional reviewing assignment details on her phone" fill sizes="(max-width: 760px) 100vw, 24vw" />
+          <figcaption>Clear assignment details before the job</figcaption>
+        </figure>
       </section>
 
       <section className="section pro-expectations">

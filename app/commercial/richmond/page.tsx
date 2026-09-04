@@ -78,6 +78,22 @@ export default function RichmondCommercialPage() {
         </div>
       </section>
 
+      <section className="section route-image-story" id="crew-ready" aria-labelledby="richmond-visibility-title">
+        <div className="route-image-story-copy">
+          <p className="section-label section-label-light">Crew-ready from day one</p>
+          <h2 id="richmond-visibility-title">A scope the field team can actually execute.</h2>
+          <p>Facility details move from the walkthrough into crew preparation, checklist expectations and visible quality follow-through.</p>
+        </div>
+        <figure className="route-story-image route-story-image-wide">
+          <Image src="/brand/maidflex-operations-lead.jpg" alt="A MaidFlex operations lead reviewing a commercial service plan" fill sizes="(max-width: 760px) 100vw, 44vw" />
+          <figcaption>Scope and crew coordination</figcaption>
+        </figure>
+        <figure className="route-story-image">
+          <Image src="/brand/maidflex-quality-detail.jpg" alt="Detailed upholstery cleaning included in a property-specific scope" fill sizes="(max-width: 760px) 100vw, 24vw" />
+          <figcaption>Property-specific detail work</figcaption>
+        </figure>
+      </section>
+
       <section className="section route-steps dark-section">
         <div>
           <p className="section-label section-label-light">The commercial launch path</p>

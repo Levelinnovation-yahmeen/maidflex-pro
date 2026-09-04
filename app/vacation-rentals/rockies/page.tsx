@@ -48,7 +48,7 @@ export default function RockiesTurnoversPage() {
           <p className="coverage-note">Coverage is confirmed by exact property location and active crew capacity.</p>
         </div>
         <div className="route-image">
-          <Image src="/brand/maidflex-cleaning-team.png" alt="A professional team resetting and cleaning a vacation rental" fill sizes="(max-width: 900px) 100vw, 48vw" priority />
+          <Image src="/brand/maidflex-guest-ready-property.jpg" alt="A guest-ready vacation rental prepared for the next arrival" fill sizes="(max-width: 900px) 100vw, 48vw" priority />
         </div>
       </section>
 
@@ -62,6 +62,22 @@ export default function RockiesTurnoversPage() {
             <article key={title}><Icon aria-hidden="true" /><h3>{title}</h3><p>{copy}</p></article>
           ))}
         </div>
+      </section>
+
+      <section className="section route-image-story route-image-story-warm" id="guest-ready-reset" aria-labelledby="rockies-reset-title">
+        <div className="route-image-story-copy">
+          <p className="section-label">The reset in view</p>
+          <h2 id="rockies-reset-title">Clean, restocked and put back together.</h2>
+          <p>The standard is the full guest experience—not merely the surfaces. Presentation, details and property condition are handled as one turnover.</p>
+        </div>
+        <figure className="route-story-image route-story-image-wide">
+          <Image src="/brand/maidflex-hospitality-reset.jpg" alt="A MaidFlex professional resetting the living area of a vacation rental" fill sizes="(max-width: 760px) 100vw, 44vw" />
+          <figcaption>Guest-ready property reset</figcaption>
+        </figure>
+        <figure className="route-story-image">
+          <Image src="/brand/maidflex-quality-detail.jpg" alt="Detailed upholstery cleaning during a vacation-rental turnover" fill sizes="(max-width: 760px) 100vw, 24vw" />
+          <figcaption>Detail work when the property needs it</figcaption>
+        </figure>
       </section>
 
       <section className="section turnover-clock-section">

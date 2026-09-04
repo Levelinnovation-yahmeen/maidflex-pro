@@ -214,6 +214,49 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="brand-story section" id="operating-standard" aria-labelledby="brand-story-title">
+        <div className="brand-story-heading">
+          <div>
+            <p className="section-label">Inside the operating standard</p>
+            <h2 id="brand-story-title">The work is physical. The accountability is visible.</h2>
+          </div>
+          <p>
+            Every property has a different finish line. MaidFlex turns the room,
+            the crew and the deadline into one documented service plan.
+          </p>
+        </div>
+
+        <div className="brand-story-grid">
+          <figure className="brand-story-card brand-story-card-main">
+            <Image
+              src="/brand/maidflex-hospitality-reset.jpg"
+              alt="A MaidFlex professional resetting the living room of a managed property"
+              fill
+              sizes="(max-width: 760px) 100vw, 58vw"
+            />
+            <figcaption><span>Hospitality turns</span><strong>Reset for the next arrival.</strong></figcaption>
+          </figure>
+          <figure className="brand-story-card">
+            <Image
+              src="/brand/maidflex-operations-lead.jpg"
+              alt="A MaidFlex operations lead reviewing property details on a tablet"
+              fill
+              sizes="(max-width: 760px) 100vw, 34vw"
+            />
+            <figcaption><span>Coordinated coverage</span><strong>The scope stays with the team.</strong></figcaption>
+          </figure>
+          <figure className="brand-story-card">
+            <Image
+              src="/brand/maidflex-quality-detail.jpg"
+              alt="Professional upholstery extraction as part of a detailed cleaning scope"
+              fill
+              sizes="(max-width: 760px) 100vw, 34vw"
+            />
+            <figcaption><span>Quality details</span><strong>The finish is documented.</strong></figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section className="industries section" id="richmond">
         <div className="section-heading">
           <div>

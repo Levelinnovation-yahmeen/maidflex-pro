@@ -14,8 +14,9 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; margin: 0; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; margin: 0; overflow-x: clip; }
+main { overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; }
 h1, h2, h3 { font-family: 'Arial Black', Arial, Helvetica, sans-serif; letter-spacing: -.045em; }
@@ -89,6 +90,20 @@ h1, h2, h3 { font-family: 'Arial Black', Arial, Helvetica, sans-serif; letter-sp
 .positioning-copy > p { color: var(--ink-soft); font-size: clamp(1.12rem, 1.8vw, 1.55rem); line-height: 1.58; margin: 0; }
 .promise-row { border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 2.3rem; padding-top: 1.3rem; }
 .promise-row span { border: 1px solid rgba(47,107,24,.2); border-radius: 999px; color: var(--forest); font-size: .7rem; font-weight: 900; padding: .55rem .8rem; text-transform: uppercase; }
+
+.brand-story { background: var(--paper); }
+.brand-story-heading { align-items: end; display: grid; gap: 7vw; grid-template-columns: 1.1fr .9fr; margin-bottom: 3.5rem; }
+.brand-story-heading h2 { font-size: clamp(3rem, 5.1vw, 5.8rem); line-height: .96; margin: 0; }
+.brand-story-heading > p { color: #595954; font-size: 1.02rem; line-height: 1.68; margin: 0 0 .4rem; max-width: 540px; }
+.brand-story-grid { display: grid; gap: 1rem; grid-template-columns: 1.65fr 1fr; grid-template-rows: repeat(2, minmax(290px, 1fr)); }
+.brand-story-card { border-radius: 1.4rem; margin: 0; min-height: 290px; overflow: hidden; position: relative; }
+.brand-story-card-main { grid-row: 1 / 3; }
+.brand-story-card::after, .route-story-image::after { background: linear-gradient(0deg, rgba(16,22,14,.82), rgba(16,22,14,0) 48%); content: ''; inset: 0; pointer-events: none; position: absolute; }
+.brand-story-card img, .route-story-image img { object-fit: cover; transition: transform 300ms ease; }
+.brand-story-card:hover img, .route-story-image:hover img { transform: scale(1.018); }
+.brand-story-card figcaption { bottom: 0; color: white; display: grid; gap: .35rem; left: 0; padding: 1.5rem; position: absolute; right: 0; z-index: 2; }
+.brand-story-card figcaption span { color: #d9f1d1; font-size: .65rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.brand-story-card figcaption strong { font-size: clamp(1.15rem, 1.8vw, 1.65rem); }
 
 .industries { background: var(--paper); }
 .section-heading { align-items: end; display: grid; gap: 7vw; grid-template-columns: 1fr minmax(280px, .64fr); margin-bottom: 4rem; }
@@ -278,6 +293,17 @@ footer > div { display: grid; font-size: .7rem; gap: .4rem; justify-items: end; 
 .mini-contact a { color: var(--forest); font-size: 1.2rem; font-weight: 900; }
 .walkthrough-form-compact { padding: clamp(1.4rem, 2.5vw, 2.2rem); }
 
+.route-image-story { background: var(--ink); color: white; display: grid; gap: 1rem; grid-template-columns: .9fr 1.35fr .75fr; }
+.route-image-story-copy { align-self: center; padding-right: clamp(1rem, 3vw, 3rem); }
+.route-image-story-copy h2 { font-size: clamp(2.8rem, 4.3vw, 5rem); line-height: .94; margin: 0; }
+.route-image-story-copy > p:not(.section-label) { color: #c7c7c0; line-height: 1.65; margin: 1.7rem 0 0; max-width: 520px; }
+.route-story-image { border-radius: 1.4rem; margin: 0; min-height: 520px; overflow: hidden; position: relative; }
+.route-story-image figcaption { bottom: 0; color: white; font-size: .7rem; font-weight: 900; left: 0; letter-spacing: .04em; padding: 1.3rem; position: absolute; right: 0; text-transform: uppercase; z-index: 2; }
+.route-image-story-warm { background: var(--cream); color: var(--ink); }
+.route-image-story-warm .route-image-story-copy > p:not(.section-label) { color: #5c5c56; }
+.professional-image-story { background: var(--forest); }
+.professional-image-story .route-image-story-copy > p:not(.section-label) { color: #d1e6ca; }
+
 /* Rockies route */
 .standards-section { background: var(--cream); }
 .standards-grid { background: var(--line); border: 1px solid var(--line); display: grid; gap: 1px; grid-template-columns: repeat(4, 1fr); }
@@ -345,6 +371,9 @@ footer > div { display: grid; font-size: .7rem; gap: .4rem; justify-items: end; 
   .route-proof-bar { grid-template-columns: repeat(2, 1fr); }
   .standards-grid { grid-template-columns: repeat(2, 1fr); }
   .field-row-three { grid-template-columns: 1fr 1fr; }
+  .route-image-story { grid-template-columns: 1fr 1.35fr; }
+  .route-image-story-copy { grid-column: 1 / 3; margin-bottom: 2rem; max-width: 760px; }
+  .route-story-image { min-height: 54vw; }
 }
 
 @media (max-width: 760px) {
@@ -358,6 +387,9 @@ footer > div { display: grid; font-size: .7rem; gap: .4rem; justify-items: end; 
   .standards-grid { grid-template-columns: 1fr; }
   .standards-grid article { min-height: 250px; }
   .standards-grid h3 { margin-top: 3.5rem; }
+  .route-image-story { grid-template-columns: 1fr; }
+  .route-image-story-copy { grid-column: auto; margin-bottom: .5rem; padding-right: 0; }
+  .route-story-image { min-height: 76vw; }
   .walkthrough-page-intro, .application-intro { position: static; }
   .form-success .button { width: 100%; }
   .field-row, .field-row-three { grid-template-columns: 1fr; }
@@ -391,8 +423,11 @@ footer > div { display: grid; font-size: .7rem; gap: .4rem; justify-items: end; 
   .hero-visual { min-height: 96vw; }
   .walkthrough-card { bottom: 1rem; left: 1rem; }
   .market-choice { min-height: 300px; padding: 3rem 1.2rem; }
-  .positioning-grid, .section-heading, .faq, .contact { gap: 2.7rem; grid-template-columns: 1fr; }
+  .positioning-grid, .section-heading, .brand-story-heading, .faq, .contact { gap: 2.7rem; grid-template-columns: 1fr; }
   .section-heading { margin-bottom: 2.8rem; }
+  .brand-story-heading { margin-bottom: 2.8rem; }
+  .brand-story-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .brand-story-card, .brand-story-card-main { grid-row: auto; min-height: 78vw; }
   .industry-grid { grid-template-columns: 1fr; }
   .industry-card { min-height: 340px; }
   .rockies, .visibility, .process, .fit { gap: 3.5rem; }
