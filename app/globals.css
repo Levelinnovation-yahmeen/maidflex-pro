@@ -71,10 +71,15 @@ h1, h2, h3 { font-family: 'Arial Black', Arial, Helvetica, sans-serif; letter-sp
 .walkthrough-card span:last-child { color: #65655f; font-size: .7rem; }
 .status-dot { background: var(--leaf); border: 4px solid var(--leaf-soft); border-radius: 50%; height: 18px; width: 18px; }
 
-.industry-ribbon { align-items: center; background: var(--ink); color: white; display: flex; gap: 2rem; justify-content: space-between; padding: 1.2rem 5vw; }
-.industry-ribbon p { font-size: .74rem; font-weight: 900; letter-spacing: .08em; margin: 0; text-transform: uppercase; }
-.industry-ribbon div { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: flex-end; }
-.industry-ribbon span { border: 1px solid rgba(255,255,255,.25); border-radius: 999px; color: #e8e8e3; font-size: .69rem; padding: .47rem .72rem; }
+.market-selector { display: grid; grid-template-columns: 1fr 1fr; }
+.market-choice { background: var(--leaf); display: flex; flex-direction: column; min-height: 360px; padding: clamp(2rem, 5vw, 5rem); transition: filter 160ms ease; }
+.market-choice:hover, .market-choice:focus-visible { filter: brightness(1.05); }
+.market-choice > span { font-size: .7rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.market-choice h2 { font-size: clamp(2.8rem, 5vw, 5.7rem); line-height: .92; margin: 2rem 0 1rem; max-width: 700px; }
+.market-choice p { font-size: 1rem; line-height: 1.6; margin: 0; max-width: 580px; }
+.market-choice strong { font-size: .75rem; letter-spacing: .06em; margin-top: auto; padding-top: 2rem; text-transform: uppercase; }
+.market-choice-dark { background: var(--ink); color: white; }
+.market-choice-dark p { color: #d4d4ce; }
 
 .section { padding: clamp(5.5rem, 9vw, 9rem) 5vw; }
 .positioning { background: var(--cream); }
@@ -98,6 +103,22 @@ h1, h2, h3 { font-family: 'Arial Black', Arial, Helvetica, sans-serif; letter-sp
 .industry-card strong { color: var(--forest); display: block; font-size: .83rem; margin-bottom: .85rem; }
 .industry-card p { color: #5d5d58; font-size: .9rem; line-height: 1.58; margin: 0; }
 .industry-card > a { align-items: center; display: flex; font-size: .73rem; font-weight: 900; justify-content: space-between; margin-top: auto; padding-top: 2rem; text-transform: uppercase; }
+
+.rockies { background: var(--ink); color: white; display: grid; gap: 9vw; grid-template-columns: .9fr 1.1fr; }
+.rockies-intro { align-self: center; }
+.rockies h2 { font-size: clamp(3.4rem, 6vw, 7rem); line-height: .9; margin: 0; }
+.rockies-intro > p:not(.section-label) { color: #cecec8; font-size: 1.05rem; line-height: 1.68; margin: 2rem 0; max-width: 600px; }
+.turnover-card { align-self: center; background: var(--paper); border-radius: 1.5rem; color: var(--ink); overflow: hidden; padding: 1.6rem; }
+.turnover-card-head { align-items: center; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; padding: .25rem 0 1.35rem; }
+.turnover-card-head span { color: #74746e; font-size: .66rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.turnover-card-head strong { color: var(--forest); font-size: .75rem; }
+.turnover-card ol { list-style: none; margin: 0; padding: .5rem 0 0; }
+.turnover-card li { align-items: center; border-bottom: 1px solid var(--line); display: grid; gap: .85rem; grid-template-columns: 38px 1fr; padding: 1.15rem 0; }
+.turnover-card li:last-child { border-bottom: 0; }
+.turnover-card li > svg { background: var(--leaf-soft); border-radius: 50%; color: var(--forest); height: 34px; padding: 8px; width: 34px; }
+.turnover-card li > div { display: grid; gap: .2rem; }
+.turnover-card li strong { font-size: .8rem; }
+.turnover-card li span { color: #74746e; font-size: .68rem; }
 
 .visibility { background: var(--forest); color: white; display: grid; gap: 9vw; grid-template-columns: .95fr 1.05fr; }
 .visibility-copy > p:not(.section-label) { color: #d1e6ca; font-size: 1.03rem; line-height: 1.65; margin: 2rem 0 0; max-width: 620px; }
@@ -165,7 +186,7 @@ h1, h2, h3 { font-family: 'Arial Black', Arial, Helvetica, sans-serif; letter-sp
 .contact-links a { color: var(--forest); font-size: .87rem; font-weight: 900; width: fit-content; }
 .walkthrough-form { background: var(--cream); border: 1px solid var(--line); border-radius: 1.5rem; display: grid; gap: 1.15rem; padding: clamp(1.4rem, 3vw, 2.5rem); }
 .field-row { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
-.field-row-three { grid-template-columns: 1.2fr .8fr 1fr; }
+.field-row-three { grid-template-columns: 1fr 1fr; }
 .walkthrough-form label { color: #50504c; display: grid; font-size: .68rem; font-weight: 900; gap: .5rem; letter-spacing: .045em; text-transform: uppercase; }
 .walkthrough-form input, .walkthrough-form select, .walkthrough-form textarea { background: white; border: 1px solid rgba(28,28,28,.17); border-radius: .78rem; color: var(--ink); font-size: .9rem; font-weight: 400; outline: none; padding: .9rem 1rem; text-transform: none; width: 100%; }
 .walkthrough-form textarea { resize: vertical; }
@@ -191,8 +212,10 @@ footer > div { display: grid; font-size: .7rem; gap: .4rem; justify-items: end; 
   .hero { grid-template-columns: 1fr; }
   .hero-copy { max-width: 900px; padding-bottom: 4rem; }
   .hero-visual { min-height: 66vw; }
+  .market-selector { grid-template-columns: 1fr; }
+  .market-choice { min-height: 320px; }
   .industry-grid { grid-template-columns: repeat(2, 1fr); }
-  .visibility, .process, .fit { gap: 5rem; grid-template-columns: 1fr; }
+  .rockies, .visibility, .process, .fit { gap: 5rem; grid-template-columns: 1fr; }
   .portfolio-card { grid-template-columns: auto 1fr; }
   .portfolio-copy { grid-column: 2; }
 }
@@ -210,13 +233,12 @@ footer > div { display: grid; font-size: .7rem; gap: .4rem; justify-items: end; 
   .trust-row { gap: .78rem 1rem; margin-top: 2.3rem; }
   .hero-visual { min-height: 96vw; }
   .walkthrough-card { bottom: 1rem; left: 1rem; }
-  .industry-ribbon { align-items: flex-start; flex-direction: column; gap: 1rem; padding: 1.4rem 1.2rem; }
-  .industry-ribbon div { justify-content: flex-start; }
+  .market-choice { min-height: 300px; padding: 3rem 1.2rem; }
   .positioning-grid, .section-heading, .faq, .contact { gap: 2.7rem; grid-template-columns: 1fr; }
   .section-heading { margin-bottom: 2.8rem; }
   .industry-grid { grid-template-columns: 1fr; }
   .industry-card { min-height: 340px; }
-  .visibility, .process, .fit { gap: 3.5rem; }
+  .rockies, .visibility, .process, .fit { gap: 3.5rem; }
   .process-heading h2, .fit-intro h2 { font-size: clamp(3.3rem, 16vw, 5rem); }
   .portfolio-card { border-radius: 1.4rem; gap: 2rem; grid-template-columns: 1fr; padding: 2rem 1.2rem; }
   .portfolio-copy { grid-column: auto; }

@@ -59,8 +59,8 @@ const industries = [
 
 const steps = [
   {
-    title: 'Walk the facility',
-    copy: 'We document square footage, floor types, restrooms, high-touch zones, access, and special requirements.',
+    title: 'Review the property',
+    copy: 'For Richmond facilities, we walk the space. For Rockies rentals, we review the home, turn window, access, and guest-ready standards.',
   },
   {
     title: 'Build the scope',
@@ -77,6 +77,11 @@ const steps = [
 ];
 
 const faqs = [
+  {
+    question: 'Where does MaidFlex Pro operate?',
+    answer:
+      'We have two focused service lanes: commercial cleaning in Richmond, Virginia, and vacation-rental turnover service in the Rocky Mountain region. Availability within the Rockies is confirmed by property location.',
+  },
   {
     question: 'Can you quote our facility without a walkthrough?',
     answer:
@@ -119,40 +124,40 @@ export default function Home() {
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#industries">Industries</a>
+          <a href="#markets">Markets</a>
+          <a href="#richmond">Richmond</a>
+          <a href="#rockies">The Rockies</a>
           <a href="#difference">Why MaidFlex</a>
-          <a href="#process">Our process</a>
-          <a href="#contact">Contact</a>
         </nav>
 
         <a className="button button-small" href="#contact">
-          Book a walkthrough
+          Request a plan
         </a>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">Commercial cleaning · Richmond, Virginia</p>
-          <h1>Clean operations start with a crew that shows up.</h1>
+          <p className="eyebrow">Two markets · One operating standard</p>
+          <h1>Cleaning built for properties that can&apos;t miss a beat.</h1>
           <p className="hero-intro">
-            Reliable commercial cleaning for high-traffic facilities. Clear
-            scopes, flexible schedules, and proof-of-service updates without
-            chasing anyone down.
+            MaidFlex Pro runs two dedicated service lanes: commercial cleaning
+            for Richmond facilities and documented vacation-rental turnovers
+            across the Rockies.
           </p>
 
           <div className="hero-actions">
-            <a className="button" href="#contact">
-              Schedule a walkthrough <span aria-hidden="true">↗</span>
+            <a className="button" href="#richmond">
+              Richmond commercial <span aria-hidden="true">↗</span>
             </a>
-            <a className="text-link" href="tel:+18048029639">
-              Call 804-802-9639 <span aria-hidden="true">→</span>
+            <a className="text-link" href="#rockies">
+              Rockies vacation rentals <span aria-hidden="true">→</span>
             </a>
           </div>
 
           <div className="trust-row" aria-label="MaidFlex Pro service standards">
             <span>Fully insured crews</span>
-            <span>Quotes within 24 hours</span>
-            <span>Real-time job updates</span>
+            <span>Market-specific scopes</span>
+            <span>Documented job updates</span>
           </div>
         </div>
 
@@ -167,23 +172,26 @@ export default function Home() {
           <div className="walkthrough-card">
             <span className="status-dot" aria-hidden="true" />
             <div>
-              <strong>Walkthroughs available</strong>
-              <span>Clear scope. Quote within 24 hours.</span>
+              <strong>Commercial + hospitality operations</strong>
+              <span>Richmond, VA · The Rocky Mountains</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="industry-ribbon" aria-label="Industries served">
-        <p>Built for Richmond&apos;s high-traffic facilities.</p>
-        <div>
-          <span>Gyms</span>
-          <span>Medical</span>
-          <span>Property managers</span>
-          <span>Daycares</span>
-          <span>Offices</span>
-          <span>Dealerships</span>
-        </div>
+      <section className="market-selector" id="markets" aria-label="MaidFlex Pro markets">
+        <a href="#richmond" className="market-choice">
+          <span>01 · Richmond, Virginia</span>
+          <h2>Commercial cleaning</h2>
+          <p>Recurring facility service, post-construction work, and responsive cleaning for local businesses.</p>
+          <strong>Explore Richmond service ↘</strong>
+        </a>
+        <a href="#rockies" className="market-choice market-choice-dark">
+          <span>02 · Rocky Mountain region</span>
+          <h2>Vacation-rental turnovers</h2>
+          <p>Deadline-driven, guest-ready resets for vacation-rental owners and property managers.</p>
+          <strong>Explore Rockies service ↘</strong>
+        </a>
       </section>
 
       <section className="positioning section" id="difference">
@@ -192,9 +200,10 @@ export default function Home() {
           <h2>Your cleaner shouldn&apos;t become another vendor you manage.</h2>
           <div className="positioning-copy">
             <p>
-              MaidFlex Pro is a tech-enabled, locally run commercial cleaning
-              partner built around consistency, transparency, and fast response.
-              We create the scope, coordinate the crew, and keep your team updated.
+              MaidFlex Pro is a tech-enabled cleaning operations partner for
+              businesses and managed properties. We create the scope, coordinate
+              the crew, and keep your team updated—without blending two very
+              different markets into one generic service.
             </p>
             <div className="promise-row">
               <span>Scalable coverage</span>
@@ -205,11 +214,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="industries section" id="industries">
+      <section className="industries section" id="richmond">
         <div className="section-heading">
           <div>
-            <p className="section-label">Commercial specialties</p>
-            <h2>Cleaning built around how your facility works.</h2>
+            <p className="section-label">Richmond commercial cleaning</p>
+            <h2>Cleaning built around how Richmond facilities work.</h2>
           </div>
           <p>
             Different facilities have different pressure points. We scope the
@@ -236,14 +245,41 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="rockies section" id="rockies">
+        <div className="rockies-intro">
+          <p className="section-label section-label-light">Rockies vacation rentals</p>
+          <h2>Every checkout starts a clock.</h2>
+          <p>
+            Vacation-rental cleaning is not residential housekeeping. It is a
+            hospitality turnover operation: reset the property, surface issues,
+            and get it guest-ready before the next arrival.
+          </p>
+          <a className="button" href="#contact">
+            Build a turnover plan <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div className="turnover-card">
+          <div className="turnover-card-head">
+            <span>Example turnover</span>
+            <strong>Guest arrival · 4:00 PM</strong>
+          </div>
+          <ol>
+            <li><CheckCircle2 aria-hidden="true" /><div><strong>Full property reset</strong><span>Beds, baths, kitchen, living areas</span></div></li>
+            <li><CheckCircle2 aria-hidden="true" /><div><strong>Restock & presentation</strong><span>Supplies, amenities, guest-ready details</span></div></li>
+            <li><Camera aria-hidden="true" /><div><strong>Photos & issue flags</strong><span>Completion proof and visible damage</span></div></li>
+            <li><CalendarClock aria-hidden="true" /><div><strong>Ready before check-in</strong><span>Turn windows built around the booking calendar</span></div></li>
+          </ol>
+        </div>
+      </section>
+
       <section className="visibility section">
         <div className="visibility-copy">
           <p className="section-label section-label-light">Operational visibility</p>
           <h2>Consistency you can see.</h2>
           <p>
-            Commercial cleaning breaks down when details live in texts, memory,
-            or assumptions. MaidFlex turns the job into a documented operating
-            plan your team and the crew can actually follow.
+            Cleaning operations break down when details live in texts, memory,
+            or assumptions. MaidFlex turns every facility service or rental turn
+            into a documented operating plan your team and the crew can follow.
           </p>
           <ul>
             <li><ShieldCheck aria-hidden="true" /> Vetted, fully insured cleaning professionals</li>
@@ -257,7 +293,7 @@ export default function Home() {
           <div className="status-panel-head">
             <div>
               <span>Service status</span>
-              <strong>West Broad facility</strong>
+              <strong>Property service</strong>
             </div>
             <span className="live-pill">On track</span>
           </div>
@@ -312,22 +348,22 @@ export default function Home() {
             <Building2 />
           </div>
           <div>
-            <p className="section-label">Property management</p>
-            <h2>One unit or dozens. Same accountability.</h2>
+            <p className="section-label">Rockies property managers</p>
+            <h2>One rental or dozens. Same accountability.</h2>
           </div>
           <div className="portfolio-copy">
             <p>
-              Turnovers, vacant units, common areas, and last-minute resets all
-              move on different timelines. MaidFlex gives property teams one
-              responsive cleaning partner built to flex with the workload.
+              Departures, arrivals, back-to-back bookings, and last-minute issues
+              move on unforgiving timelines. MaidFlex gives vacation-rental teams
+              a cleaning partner built around the turn—not around a weekly route.
             </p>
             <ul>
-              <li>Vacant unit and pre-move-in cleans</li>
-              <li>Routine and responsive common-area service</li>
+              <li>Guest-ready turnover scopes by property</li>
+              <li>Restock checks and visible issue reporting</li>
               <li>Completion images and quality tracking</li>
             </ul>
             <a className="button button-dark" href="#contact">
-              Start with a trial clean <span aria-hidden="true">↗</span>
+              Start with a trial turnover <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -341,13 +377,13 @@ export default function Home() {
         <div className="fit-grid">
           <article>
             <CalendarClock aria-hidden="true" />
-            <h3>Recurring janitorial</h3>
-            <p>One to seven days per week, aligned with your traffic and operating hours.</p>
+            <h3>Richmond commercial</h3>
+            <p>Recurring janitorial service aligned with facility traffic and operating hours.</p>
           </article>
           <article>
             <HardHat aria-hidden="true" />
-            <h3>Post-construction</h3>
-            <p>Dust, debris, detail cleaning, and final presentation before turnover.</p>
+            <h3>Rockies turnovers</h3>
+            <p>Guest-ready cleaning aligned with departure times, arrivals, and booking demand.</p>
           </article>
           <article>
             <CarFront aria-hidden="true" />
@@ -378,12 +414,12 @@ export default function Home() {
 
       <section className="contact section" id="contact">
         <div className="contact-intro">
-          <p className="section-label">Free facility walkthrough</p>
-          <h2>Show us the space. We&apos;ll build the plan.</h2>
+          <p className="section-label">Request a service plan</p>
+          <h2>Tell us the market. We&apos;ll build the operation.</h2>
           <p>
-            Tell us what you manage and where the pressure points are. We&apos;ll
-            follow up to schedule a walkthrough and return a clear quote within
-            24 hours of the completed review.
+            Richmond commercial facility or Rockies vacation rental—we&apos;ll route
+            your request to the right service lane and scope the work around how
+            the property actually operates.
           </p>
           <div className="contact-links">
             <a href="tel:+18048029639">804-802-9639</a>
@@ -413,7 +449,7 @@ export default function Home() {
             height={75}
           />
         </a>
-        <p>Commercial cleaning built around your operation.</p>
+        <p>Richmond commercial. Rockies vacation rentals.</p>
         <div>
           <a href="tel:+18048029639">804-802-9639</a>
           <a href="mailto:info@maidflexpro.com">info@maidflexpro.com</a>

@@ -12,13 +12,14 @@ export function RequestForm() {
     const company = String(form.get('company') || '');
     const email = String(form.get('email') || '');
     const phone = String(form.get('phone') || '');
+    const market = String(form.get('market') || '');
     const facility = String(form.get('facility') || '');
     const size = String(form.get('size') || '');
     const frequency = String(form.get('frequency') || '');
     const details = String(form.get('details') || '');
-    const subject = encodeURIComponent(`Commercial walkthrough request - ${company}`);
+    const subject = encodeURIComponent(`MaidFlex service request - ${company}`);
     const body = encodeURIComponent(
-      `Contact: ${contact}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nFacility: ${facility}\nApprox. size: ${size}\nDesired frequency: ${frequency}\n\nFacility details:\n${details}`,
+      `Contact: ${contact}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nMarket: ${market}\nProperty type: ${facility}\nApprox. size: ${size}\nDesired frequency: ${frequency}\n\nProperty details:\n${details}`,
     );
 
     setSent(true);
@@ -49,9 +50,19 @@ export function RequestForm() {
       </div>
       <div className="field-row field-row-three">
         <label>
-          Facility type
+          Service market
+          <select name="market" defaultValue="" required>
+            <option value="" disabled>Select one</option>
+            <option>Richmond commercial</option>
+            <option>Rockies vacation rental</option>
+          </select>
+        </label>
+        <label>
+          Property type
           <select name="facility" defaultValue="" required>
             <option value="" disabled>Select one</option>
+            <option>Vacation rental</option>
+            <option>Vacation-rental portfolio</option>
             <option>Gym or fitness center</option>
             <option>Property or apartment community</option>
             <option>Medical or dental office</option>
@@ -68,10 +79,12 @@ export function RequestForm() {
           <input name="size" inputMode="numeric" placeholder="e.g. 8,500" required />
         </label>
         <label>
-          Service frequency
+          Service pattern
           <select name="frequency" defaultValue="" required>
             <option value="" disabled>Select one</option>
             <option>One-time or trial clean</option>
+            <option>Per guest checkout</option>
+            <option>Multiple turns per week</option>
             <option>1x per week</option>
             <option>2-3x per week</option>
             <option>5-7x per week</option>
@@ -80,21 +93,21 @@ export function RequestForm() {
         </label>
       </div>
       <label>
-        What should we know before the walkthrough?
+        What should we know about the property?
         <textarea
           name="details"
           rows={4}
-          placeholder="Number of locations, current pain points, access hours, restrooms, floor types, or preferred start date..."
+          placeholder="Location, number of properties, turn windows or access hours, current pain points, and preferred start date..."
           required
         />
       </label>
       <button className="button form-button" type="submit">
-        Request my walkthrough <span aria-hidden="true">↗</span>
+        Request my service plan <span aria-hidden="true">↗</span>
       </button>
       <p className="form-note" aria-live="polite">
         {sent
-          ? 'Your walkthrough request is ready to send in your email app.'
-          : 'No vague estimates. We scope the facility before final pricing.'}
+          ? 'Your service request is ready to send in your email app.'
+          : 'We scope Richmond facilities and Rockies rentals through separate service lanes.'}
       </p>
     </form>
   );

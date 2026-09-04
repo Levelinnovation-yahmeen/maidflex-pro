@@ -3,13 +3,13 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://maidflex-pro.snug-civet-5353.chatgpt.site'),
-  title: 'MaidFlex Pro | Commercial Cleaning in Richmond, VA',
+  title: 'MaidFlex Pro | Richmond Commercial + Rockies Vacation Rentals',
   description:
-    'Reliable commercial cleaning for Richmond businesses, with clear scopes, flexible schedules, and documented service updates.',
+    'Commercial cleaning for Richmond facilities and documented vacation-rental turnovers across the Rocky Mountain region.',
   openGraph: {
-    title: 'MaidFlex Pro | Commercial Cleaning in Richmond, VA',
+    title: 'MaidFlex Pro | Two Markets. One Operating Standard.',
     description:
-      'Clean operations start with a crew that shows up. Schedule a commercial facility walkthrough.',
+      'Richmond commercial cleaning and Rockies vacation-rental turnovers.',
     url: '/',
     siteName: 'MaidFlex Pro',
     images: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'MaidFlex Pro - Commercial cleaning for Richmond businesses.',
+        alt: 'MaidFlex Pro - Richmond commercial cleaning and Rockies vacation-rental turnovers.',
       },
     ],
     locale: 'en_US',
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MaidFlex Pro | Commercial Cleaning in Richmond, VA',
+    title: 'MaidFlex Pro | Richmond Commercial + Rockies Vacation Rentals',
     description:
-      'Clean operations start with a crew that shows up. Schedule a commercial facility walkthrough.',
+      'Richmond commercial cleaning and Rockies vacation-rental turnovers.',
     images: ['/og.png'],
   },
 };
