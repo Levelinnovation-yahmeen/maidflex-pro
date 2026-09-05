@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   BadgeCheck,
   BriefcaseBusiness,
@@ -125,8 +126,8 @@ export default function Home() {
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="#markets">Markets</a>
-          <a href="/commercial/richmond">Richmond</a>
-          <a href="/vacation-rentals/rockies">The Rockies</a>
+          <Link href="/commercial/richmond">Richmond</Link>
+          <Link href="/vacation-rentals/rockies">The Rockies</Link>
           <a href="#difference">Why MaidFlex</a>
         </nav>
 
@@ -146,15 +147,18 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <a className="button" href="/commercial/richmond">
+            <Link className="button" href="/commercial/richmond">
               Richmond commercial <span aria-hidden="true">↗</span>
-            </a>
-            <a className="text-link" href="/vacation-rentals/rockies">
+            </Link>
+            <Link className="text-link" href="/vacation-rentals/rockies">
               Rockies vacation rentals <span aria-hidden="true">→</span>
-            </a>
+            </Link>
           </div>
 
-          <div className="trust-row" aria-label="MaidFlex Pro service standards">
+          <div
+            className="trust-row"
+            aria-label="MaidFlex Pro service standards"
+          >
             <span>Fully insured crews</span>
             <span>Market-specific scopes</span>
             <span>Documented job updates</span>
@@ -179,19 +183,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="market-selector" id="markets" aria-label="MaidFlex Pro markets">
-        <a href="/commercial/richmond" className="market-choice">
+      <section
+        className="market-selector"
+        id="markets"
+        aria-label="MaidFlex Pro markets"
+      >
+        <Link href="/commercial/richmond" className="market-choice">
           <span>01 · Richmond, Virginia</span>
           <h2>Commercial cleaning</h2>
-          <p>Recurring facility service, post-construction work, and responsive cleaning for local businesses.</p>
+          <p>
+            Recurring facility service, post-construction work, and responsive
+            cleaning for local businesses.
+          </p>
           <strong>Explore Richmond service ↘</strong>
-        </a>
-        <a href="/vacation-rentals/rockies" className="market-choice market-choice-dark">
+        </Link>
+        <Link
+          href="/vacation-rentals/rockies"
+          className="market-choice market-choice-dark"
+        >
           <span>02 · Rocky Mountain region</span>
           <h2>Vacation-rental turnovers</h2>
-          <p>Deadline-driven, guest-ready resets for vacation-rental owners and property managers.</p>
+          <p>
+            Deadline-driven, guest-ready resets for vacation-rental owners and
+            property managers.
+          </p>
           <strong>Explore Rockies service ↘</strong>
-        </a>
+        </Link>
       </section>
 
       <section className="positioning section" id="difference">
@@ -214,11 +231,17 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="brand-story section" id="operating-standard" aria-labelledby="brand-story-title">
+      <section
+        className="brand-story section"
+        id="operating-standard"
+        aria-labelledby="brand-story-title"
+      >
         <div className="brand-story-heading">
           <div>
             <p className="section-label">Inside the operating standard</p>
-            <h2 id="brand-story-title">The work is physical. The accountability is visible.</h2>
+            <h2 id="brand-story-title">
+              The work is physical. The accountability is visible.
+            </h2>
           </div>
           <p>
             Every property has a different finish line. MaidFlex turns the room,
@@ -234,7 +257,10 @@ export default function Home() {
               fill
               sizes="(max-width: 760px) 100vw, 58vw"
             />
-            <figcaption><span>Hospitality turns</span><strong>Reset for the next arrival.</strong></figcaption>
+            <figcaption>
+              <span>Hospitality turns</span>
+              <strong>Reset for the next arrival.</strong>
+            </figcaption>
           </figure>
           <figure className="brand-story-card">
             <Image
@@ -243,7 +269,10 @@ export default function Home() {
               fill
               sizes="(max-width: 760px) 100vw, 34vw"
             />
-            <figcaption><span>Coordinated coverage</span><strong>The scope stays with the team.</strong></figcaption>
+            <figcaption>
+              <span>Coordinated coverage</span>
+              <strong>The scope stays with the team.</strong>
+            </figcaption>
           </figure>
           <figure className="brand-story-card">
             <Image
@@ -252,7 +281,10 @@ export default function Home() {
               fill
               sizes="(max-width: 760px) 100vw, 34vw"
             />
-            <figcaption><span>Quality details</span><strong>The finish is documented.</strong></figcaption>
+            <figcaption>
+              <span>Quality details</span>
+              <strong>The finish is documented.</strong>
+            </figcaption>
           </figure>
         </div>
       </section>
@@ -280,9 +312,9 @@ export default function Home() {
               <h3>{name}</h3>
               <strong>{line}</strong>
               <p>{copy}</p>
-              <a href="/commercial/richmond#walkthrough">
+              <Link href="/commercial/richmond#walkthrough">
                 Request a walkthrough <span aria-hidden="true">↗</span>
-              </a>
+              </Link>
             </article>
           ))}
         </div>
@@ -290,16 +322,21 @@ export default function Home() {
 
       <section className="rockies section" id="rockies">
         <div className="rockies-intro">
-          <p className="section-label section-label-light">Rockies vacation rentals</p>
+          <p className="section-label section-label-light">
+            Rockies vacation rentals
+          </p>
           <h2>Every checkout starts a clock.</h2>
           <p>
             Vacation-rental cleaning is not residential housekeeping. It is a
             hospitality turnover operation: reset the property, surface issues,
             and get it guest-ready before the next arrival.
           </p>
-          <a className="button" href="/vacation-rentals/rockies#turnover-plan">
+          <Link
+            className="button"
+            href="/vacation-rentals/rockies#turnover-plan"
+          >
             Build a turnover plan <span aria-hidden="true">↗</span>
-          </a>
+          </Link>
         </div>
         <div className="turnover-card">
           <div className="turnover-card-head">
@@ -307,17 +344,43 @@ export default function Home() {
             <strong>Guest arrival · 4:00 PM</strong>
           </div>
           <ol>
-            <li><CheckCircle2 aria-hidden="true" /><div><strong>Full property reset</strong><span>Beds, baths, kitchen, living areas</span></div></li>
-            <li><CheckCircle2 aria-hidden="true" /><div><strong>Restock & presentation</strong><span>Supplies, amenities, guest-ready details</span></div></li>
-            <li><Camera aria-hidden="true" /><div><strong>Photos & issue flags</strong><span>Completion proof and visible damage</span></div></li>
-            <li><CalendarClock aria-hidden="true" /><div><strong>Ready before check-in</strong><span>Turn windows built around the booking calendar</span></div></li>
+            <li>
+              <CheckCircle2 aria-hidden="true" />
+              <div>
+                <strong>Full property reset</strong>
+                <span>Beds, baths, kitchen, living areas</span>
+              </div>
+            </li>
+            <li>
+              <CheckCircle2 aria-hidden="true" />
+              <div>
+                <strong>Restock & presentation</strong>
+                <span>Supplies, amenities, guest-ready details</span>
+              </div>
+            </li>
+            <li>
+              <Camera aria-hidden="true" />
+              <div>
+                <strong>Photos & issue flags</strong>
+                <span>Completion proof and visible damage</span>
+              </div>
+            </li>
+            <li>
+              <CalendarClock aria-hidden="true" />
+              <div>
+                <strong>Ready before check-in</strong>
+                <span>Turn windows built around the booking calendar</span>
+              </div>
+            </li>
           </ol>
         </div>
       </section>
 
       <section className="visibility section">
         <div className="visibility-copy">
-          <p className="section-label section-label-light">Operational visibility</p>
+          <p className="section-label section-label-light">
+            Operational visibility
+          </p>
           <h2>Consistency you can see.</h2>
           <p>
             Cleaning operations break down when details live in texts, memory,
@@ -325,14 +388,29 @@ export default function Home() {
             into a documented operating plan your team and the crew can follow.
           </p>
           <ul>
-            <li><ShieldCheck aria-hidden="true" /> Vetted, fully insured cleaning professionals</li>
-            <li><CalendarClock aria-hidden="true" /> Recurring, turnover, and responsive scheduling</li>
-            <li><Camera aria-hidden="true" /> Checklists, images, and real-time job updates</li>
-            <li><UsersRound aria-hidden="true" /> Coverage that scales with your workload</li>
+            <li>
+              <ShieldCheck aria-hidden="true" /> Vetted, fully insured cleaning
+              professionals
+            </li>
+            <li>
+              <CalendarClock aria-hidden="true" /> Recurring, turnover, and
+              responsive scheduling
+            </li>
+            <li>
+              <Camera aria-hidden="true" /> Checklists, images, and real-time
+              job updates
+            </li>
+            <li>
+              <UsersRound aria-hidden="true" /> Coverage that scales with your
+              workload
+            </li>
           </ul>
         </div>
 
-        <div className="status-panel" aria-label="Example MaidFlex service status">
+        <div
+          className="status-panel"
+          aria-label="Example MaidFlex service status"
+        >
           <div className="status-panel-head">
             <div>
               <span>Service status</span>
@@ -343,22 +421,34 @@ export default function Home() {
           <ol>
             <li className="complete">
               <CheckCircle2 aria-hidden="true" />
-              <div><strong>Scope confirmed</strong><span>Zones, access, supplies</span></div>
+              <div>
+                <strong>Scope confirmed</strong>
+                <span>Zones, access, supplies</span>
+              </div>
               <small>Done</small>
             </li>
             <li className="complete">
               <CheckCircle2 aria-hidden="true" />
-              <div><strong>Crew assigned</strong><span>2 cleaning professionals</span></div>
+              <div>
+                <strong>Crew assigned</strong>
+                <span>2 cleaning professionals</span>
+              </div>
               <small>Done</small>
             </li>
             <li className="active">
               <ClipboardCheck aria-hidden="true" />
-              <div><strong>Service checklist</strong><span>18 of 22 items complete</span></div>
+              <div>
+                <strong>Service checklist</strong>
+                <span>18 of 22 items complete</span>
+              </div>
               <small>Live</small>
             </li>
             <li>
               <Camera aria-hidden="true" />
-              <div><strong>Completion update</strong><span>Photos and sign-off</span></div>
+              <div>
+                <strong>Completion update</strong>
+                <span>Photos and sign-off</span>
+              </div>
               <small>Next</small>
             </li>
           </ol>
@@ -369,7 +459,13 @@ export default function Home() {
       <section className="process section" id="process">
         <div className="process-heading">
           <p className="section-label">From walkthrough to launch</p>
-          <h2>No guessing.<br />No vague scopes.<br /><em>No chaos.</em></h2>
+          <h2>
+            No guessing.
+            <br />
+            No vague scopes.
+            <br />
+            <em>No chaos.</em>
+          </h2>
         </div>
 
         <ol className="process-list">
@@ -396,18 +492,22 @@ export default function Home() {
           </div>
           <div className="portfolio-copy">
             <p>
-              Departures, arrivals, back-to-back bookings, and last-minute issues
-              move on unforgiving timelines. MaidFlex gives vacation-rental teams
-              a cleaning partner built around the turn—not around a weekly route.
+              Departures, arrivals, back-to-back bookings, and last-minute
+              issues move on unforgiving timelines. MaidFlex gives
+              vacation-rental teams a cleaning partner built around the turn—not
+              around a weekly route.
             </p>
             <ul>
               <li>Guest-ready turnover scopes by property</li>
               <li>Restock checks and visible issue reporting</li>
               <li>Completion images and quality tracking</li>
             </ul>
-            <a className="button button-dark" href="/vacation-rentals/rockies#turnover-plan">
+            <Link
+              className="button button-dark"
+              href="/vacation-rentals/rockies#turnover-plan"
+            >
               Start with a trial turnover <span aria-hidden="true">↗</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -415,23 +515,38 @@ export default function Home() {
       <section className="fit section">
         <div className="fit-intro">
           <p className="section-label section-label-light">Where we fit</p>
-          <h2>Your schedule.<br />Your standards.<br />One clear scope.</h2>
+          <h2>
+            Your schedule.
+            <br />
+            Your standards.
+            <br />
+            One clear scope.
+          </h2>
         </div>
         <div className="fit-grid">
           <article>
             <CalendarClock aria-hidden="true" />
             <h3>Richmond commercial</h3>
-            <p>Recurring janitorial service aligned with facility traffic and operating hours.</p>
+            <p>
+              Recurring janitorial service aligned with facility traffic and
+              operating hours.
+            </p>
           </article>
           <article>
             <HardHat aria-hidden="true" />
             <h3>Rockies turnovers</h3>
-            <p>Guest-ready cleaning aligned with departure times, arrivals, and booking demand.</p>
+            <p>
+              Guest-ready cleaning aligned with departure times, arrivals, and
+              booking demand.
+            </p>
           </article>
           <article>
             <CarFront aria-hidden="true" />
             <h3>Specialty & urgent</h3>
-            <p>Event resets, emergency requests, showrooms, and high-priority one-time work.</p>
+            <p>
+              Event resets, emergency requests, showrooms, and high-priority
+              one-time work.
+            </p>
           </article>
         </div>
       </section>
@@ -439,16 +554,23 @@ export default function Home() {
       <section className="faq section">
         <div className="faq-heading">
           <p className="section-label">Before the walkthrough</p>
-          <h2>Good questions.<br />Clear answers.</h2>
+          <h2>
+            Good questions.
+            <br />
+            Clear answers.
+          </h2>
           <p>
-            Need an answer now? Call{' '}
-            <a href="tel:+18048029639">804-802-9639</a>.
+            Need an answer now? Call <a href="tel:+18048029639">804-802-9639</a>
+            .
           </p>
         </div>
         <div className="faq-list">
           {faqs.map(({ question, answer }) => (
             <details key={question}>
-              <summary>{question}<span aria-hidden="true">+</span></summary>
+              <summary>
+                {question}
+                <span aria-hidden="true">+</span>
+              </summary>
               <p>{answer}</p>
             </details>
           ))}
@@ -460,9 +582,9 @@ export default function Home() {
           <p className="section-label">Request a service plan</p>
           <h2>Tell us the market. We&apos;ll build the operation.</h2>
           <p>
-            Richmond commercial facility or Rockies vacation rental—we&apos;ll route
-            your request to the right service lane and scope the work around how
-            the property actually operates.
+            Richmond commercial facility or Rockies vacation rental—we&apos;ll
+            route your request to the right service lane and scope the work
+            around how the property actually operates.
           </p>
           <div className="contact-links">
             <a href="tel:+18048029639">804-802-9639</a>
@@ -478,9 +600,9 @@ export default function Home() {
           <span>Cleaning professionals</span>
           <strong>Want commercial jobs without chasing leads?</strong>
         </div>
-        <a href="/cleaners/apply">
+        <Link href="/cleaners/apply">
           Apply to join the network <span aria-hidden="true">→</span>
-        </a>
+        </Link>
       </section>
 
       <footer>
@@ -496,8 +618,8 @@ export default function Home() {
         <div>
           <a href="tel:+18048029639">804-802-9639</a>
           <a href="mailto:info@maidflexpro.com">info@maidflexpro.com</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Website terms</a>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Website terms</Link>
           <span>© 2026 MaidFlex Pro</span>
         </div>
       </footer>

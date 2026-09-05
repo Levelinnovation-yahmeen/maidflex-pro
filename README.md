@@ -23,12 +23,16 @@ The intended public domain is `maidflexpro.com`. Domain connection and productio
 - Detailed intake forms with client-side states and server-side validation
 - Honeypot spam protection and input-length limits
 - Cloudflare D1 persistence through `/api/submissions`
+- Optional secure server-side routing to Zapier or a MaidFlex integration endpoint
+- Delivery status, attempt count, failure reason, and external record tracking in D1
 - Unique `MFP-...` confirmation numbers after successful submissions
 - Responsive desktop and mobile layouts
-- Privacy, website terms, metadata, and social-sharing artwork
-- A passing production build
+- Accessible form labels and framework-native internal navigation
+- Privacy, website terms, metadata, structured data, sitemap, robots file, and social-sharing artwork
+- Automated validation tests and GitHub quality checks
+- Passing lint, test, and production-build checks
 
-Important: submissions are saved, but they are not yet routed into Housecall Pro or Airtable and do not currently trigger an owner notification. Treat CRM delivery and failure alerting as the first production integration work.
+Important: the delivery adapter is ready, but the live environment still needs an approved destination and credentials. Until that is configured, submissions are safely stored in D1 with a `not_configured` delivery status and do not trigger an owner notification.
 
 ## Technology
 
@@ -50,14 +54,25 @@ pnpm install
 pnpm dev
 ```
 
+For the complete form flow in the production-style local Worker:
+
+```bash
+pnpm run build
+pnpm run db:migrate:local
+pnpm start
+```
+
+Local D1 state is kept under the ignored `.wrangler/local-state` directory so another build does not erase test submissions. Running `db:migrate:local` again applies only migrations that have not already run.
+
 Before submitting a change:
 
 ```bash
 pnpm run build
 pnpm run lint
+pnpm run test
 ```
 
-The build currently passes. Lint has known cleanup items documented in the developer handoff; do not treat the existing lint output as a new regression without comparing it to that list.
+All three checks currently pass. The same checks run automatically on pushes to `main` and on pull requests.
 
 ## Repository map
 
@@ -75,9 +90,15 @@ db/
   index.ts                       D1/Drizzle connection
   schema.ts                      Submission schema
 drizzle/                         Database migration and metadata
+lib/
+  submission-validation.ts      Shared server validation and sanitation
+  submission-delivery.ts        Optional HTTPS delivery adapter
+tests/                           Submission validation test suite
 public/brand/                    Approved branded imagery
 .openai/hosting.json             Managed Sites project configuration
+.github/workflows/quality.yml    Automated lint, test, and build checks
 docs/DEVELOPER_HANDOFF.md        Architecture, priorities, and acceptance criteria
+docs/INTEGRATION_SETUP.md        Webhook contract and CRM routing setup
 ```
 
 ## Forms and data
@@ -87,7 +108,7 @@ Both public form types send JSON to `POST /api/submissions`:
 - `kind: service` stores a Richmond or Rockies customer request;
 - `kind: professional` stores a cleaning-professional application.
 
-The endpoint validates required fields, sanitizes the additional payload, writes the record to the `submissions` D1 table, and returns a confirmation number. D1 is currently the system of record only for raw website submissions; it is not yet a usable sales or recruiting inbox.
+The endpoint validates required fields and markets, sanitizes the additional payload, writes the record to the `submissions` D1 table, and returns a confirmation number. When `MFP_SUBMISSION_WEBHOOK_URL` is configured, it also delivers the record over HTTPS and updates its delivery status. D1 remains the durable recovery record; Housecall Pro and Airtable should become the operational inboxes.
 
 Do not collect Social Security numbers, bank information, identification documents, W-9s, insurance files, or background-check documents through these public forms. Move approved applicants into a secure document workflow later in the recruiting process.
 
@@ -96,6 +117,8 @@ Do not collect Social Security numbers, bank information, identification documen
 The live project is managed by OpenAI Sites. Keep `.openai/hosting.json`, the existing pnpm lockfile, and the current D1 binding intact unless the hosting architecture is intentionally being migrated.
 
 Never commit Housecall Pro credentials, Zapier webhook secrets, email-service keys, or personal applicant documents. Store production credentials in the hosting environment.
+
+See [docs/INTEGRATION_SETUP.md](docs/INTEGRATION_SETUP.md) for the exact environment keys, payload contract, idempotency behavior, delivery states, and recommended Housecall Pro/Airtable mapping.
 
 ## Developer handoff
 

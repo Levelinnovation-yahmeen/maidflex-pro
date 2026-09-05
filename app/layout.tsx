@@ -1,8 +1,28 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
+const siteUrl = 'https://maidflex-pro.yahmzar.chatgpt.site';
+
+const businessStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'MaidFlex Pro',
+  url: siteUrl,
+  telephone: '+1-804-802-9639',
+  email: 'info@maidflexpro.com',
+  areaServed: [
+    { '@type': 'City', name: 'Richmond, Virginia' },
+    { '@type': 'Place', name: 'Rocky Mountain region' },
+  ],
+  serviceType: [
+    'Commercial cleaning',
+    'Janitorial service',
+    'Vacation-rental turnover cleaning',
+  ],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://maidflex-pro.yahmzar.chatgpt.site'),
+  metadataBase: new URL(siteUrl),
   title: 'MaidFlex Pro | Richmond Commercial + Rockies Vacation Rentals',
   description:
     'Commercial cleaning for Richmond facilities and documented vacation-rental turnovers across the Rocky Mountain region.',
@@ -46,7 +66,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(businessStructuredData).replace(
+              /</g,
+              '\\u003c',
+            ),
+          }}
+        />
+      </body>
     </html>
   );
 }

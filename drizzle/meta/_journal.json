@@ -8,6 +8,13 @@
       "when": 1788558415645,
       "tag": "0000_wonderful_celestials",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788581475361,
+      "tag": "0001_curious_warbound",
+      "breakpoints": true
     }
   ]
 }

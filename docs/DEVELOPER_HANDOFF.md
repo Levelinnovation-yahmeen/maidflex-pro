@@ -4,11 +4,11 @@ Prepared for the developer taking ownership of the MaidFlex Pro website and inte
 
 ## Executive summary
 
-This is a real, working MVP—not a disposable visual mockup. The routes render, the design is responsive, the forms validate, the server endpoint persists submissions to Cloudflare D1, and the production build passes.
+This is a real, working MVP—not a disposable visual mockup. The routes render, the design is responsive, the forms validate, the server endpoint persists submissions to Cloudflare D1, and the lint, test, and production-build checks pass.
 
-The main gap is operational plumbing. A successful form submission currently becomes a D1 row and a confirmation number; it does not yet become an actionable lead in Housecall Pro, an applicant in Airtable, or an immediate notification to the owner. That is the first engineering priority.
+The operational foundation is in place: saved submissions can be sent through a secure server-side HTTPS adapter, and D1 records whether delivery is not configured, pending, delivered, or failed. The remaining gap requires account-level setup: choose and authorize the destination, map customer requests into Housecall Pro, map professional applications into Airtable, and turn on owner notifications.
 
-The codebase is reasonable to inherit, but it still carries some rapid-build debt: oversized page and stylesheet files, unused starter UI components, unresolved lint findings, and no automated tests or continuous-integration checks. These are cleanup tasks, not reasons to rebuild the site from scratch.
+The inheritance cleanup is complete: unused starter components are gone, forms have explicit accessible labels, internal links use framework navigation, validation is isolated and tested, and GitHub automatically runs lint, tests, and the production build. Remaining debt is bounded: the homepage and global stylesheet are large, the delivery adapter still needs an asynchronous retry queue for higher volume, and there is no browser-level test suite yet. None of this requires a rebuild.
 
 ## Business model encoded in the site
 
@@ -32,9 +32,9 @@ flowchart LR
     A --> VLD[Validation, sanitation, honeypot]
     VLD --> D1[(Cloudflare D1 submissions)]
     D1 --> C[Confirmation code returned]
-
-    D1 -. integration needed .-> HCP[Housecall Pro customer pipeline]
-    D1 -. integration needed .-> AT[Airtable contractor pipeline]
+    D1 --> R[Optional HTTPS delivery adapter]
+    R -. credentials and mapping needed .-> HCP[Housecall Pro customer pipeline]
+    R -. credentials and mapping needed .-> AT[Airtable contractor pipeline]
     HCP -. alerting needed .-> N[Owner and operations notifications]
     AT -. alerting needed .-> N
 ```
@@ -48,8 +48,12 @@ flowchart LR
 - `app/request-form.tsx`: shared customer intake form, configured by market
 - `app/professional-application.tsx`: applicant form
 - `app/api/submissions/route.ts`: validation and persistence endpoint
+- `lib/submission-validation.ts`: shared validation and sanitation rules
+- `lib/submission-delivery.ts`: optional secure routing adapter
 - `app/site-shell.tsx`: shared navigation and footer on market pages
 - `app/globals.css`: layout and visual system
+- `tests/submission-validation.test.ts`: unit coverage for all intake types
+- `.github/workflows/quality.yml`: pull-request and main-branch quality gate
 
 ### Data layer
 
@@ -61,9 +65,10 @@ The `submissions` D1 table stores:
 - market and contact details;
 - organization when applicable;
 - sanitized market-specific fields as JSON;
+- external delivery status, attempt count, failure reason, and returned record ID;
 - creation timestamp.
 
-The API rejects unsupported request types, missing required fields, invalid-looking contact details, oversized payloads, and non-JSON requests. A hidden website field acts as a basic spam trap. If persistence fails, the visitor is shown the business phone number.
+The API rejects unsupported request types or markets, missing required fields, invalid-looking contact details, oversized payloads, and non-JSON requests. A hidden website field acts as a basic spam trap. If persistence fails, the visitor is shown the business phone number. If external delivery fails after persistence, the visitor still receives a confirmation number and the D1 record is marked for recovery.
 
 There is no authentication-protected admin view. Operational users should work in Housecall Pro and Airtable instead of building a second CRM inside this website.
 
@@ -91,25 +96,29 @@ flowchart TD
 
 ### Recommended systems of record
 
-| Function | System | Purpose |
-| --- | --- | --- |
-| Public experience | This React/Vinext site | Marketing, qualification, and intake |
-| Customer sales and service | Housecall Pro | Leads, estimates, jobs, customers, invoices |
-| Contractor recruiting | Airtable | Applications, screening, coverage, documents, roster status |
-| Automation | Zapier | Routing, alerts, record creation, and cross-system updates |
-| Raw submission backup | Cloudflare D1 | Durable website intake and recovery trail |
-| Sensitive documents | Secure e-sign/document service | Contracts, W-9s, insurance, and compliance files |
-| Measurement | GA4 and Search Console | Acquisition, funnel conversion, and search visibility |
+| Function                   | System                         | Purpose                                                     |
+| -------------------------- | ------------------------------ | ----------------------------------------------------------- |
+| Public experience          | This React/Vinext site         | Marketing, qualification, and intake                        |
+| Customer sales and service | Housecall Pro                  | Leads, estimates, jobs, customers, invoices                 |
+| Contractor recruiting      | Airtable                       | Applications, screening, coverage, documents, roster status |
+| Automation                 | Zapier                         | Routing, alerts, record creation, and cross-system updates  |
+| Raw submission backup      | Cloudflare D1                  | Durable website intake and recovery trail                   |
+| Sensitive documents        | Secure e-sign/document service | Contracts, W-9s, insurance, and compliance files            |
+| Measurement                | GA4 and Search Console         | Acquisition, funnel conversion, and search visibility       |
 
 Confirm Housecall Pro plan entitlements and API access before implementation. If the account supports creating Leads through the API, preserve the existing detailed forms and create the HCP Lead server-side. The native HCP lead form is a faster fallback, but it is less flexible and should not replace the detailed MaidFlex intake unless speed outweighs qualification depth.
 
 Do not assume the standard Housecall Pro Zapier connector can create or trigger on Leads. If Lead events are available on the selected HCP plan, use HCP webhooks such as `lead.created` with Zapier Webhooks or a small integration worker. Keep customer creation, lead creation, and job creation as separate operations with explicit failure handling.
+
+The implemented adapter contract and setup steps are in [INTEGRATION_SETUP.md](INTEGRATION_SETUP.md).
 
 ## Implementation priorities
 
 ### P0 — make every submission operational
 
 #### 1. Route customer requests into Housecall Pro
+
+**Foundation complete:** detailed forms, D1-first persistence, an HTTPS destination adapter, idempotency and confirmation headers, and delivery-state tracking are implemented. The account-specific HCP endpoint, field mapping, and credentials remain.
 
 Recommended approach:
 
@@ -132,6 +141,8 @@ Acceptance criteria:
 
 #### 2. Route professional applications into Airtable
 
+**Foundation complete:** professional applications use the same D1-first adapter and are distinguishable by `kind: professional`. The Airtable base, field mapping, credentials, and notification destination remain.
+
 Recommended Airtable tables:
 
 - `Applicants`
@@ -150,7 +161,7 @@ Acceptance criteria:
 
 #### 3. Add delivery state, alerts, and recovery
 
-The current endpoint knows only whether D1 accepted the record. Extend the model or add an integration-events table so the team can distinguish saved, delivered, retried, and failed submissions.
+**Partially complete:** the data model now distinguishes `not_configured`, `pending`, `delivered`, and `failed`; stores the attempt count, returned external ID, delivery time, and limited failure reason; and avoids logging submitted personal data. The current adapter makes one bounded attempt. Add an asynchronous queue or scheduled retry and an operator-visible recovery view before high-volume use.
 
 Acceptance criteria:
 
@@ -170,40 +181,32 @@ Acceptance criteria:
 
 ### P1 — make the repository easy to maintain
 
-#### 1. Clear the application lint findings
-
-Known categories include:
-
-- form labels that are not programmatically associated with controls;
-- internal navigation using raw anchors where framework links are expected;
-- a deprecated form-event type and a string-conversion warning;
-- unused imports and other findings inside unused starter UI components.
-
-Prioritize accessibility and application-code findings first. Then remove unused starter components instead of spending time polishing code that the product does not use.
-
-Acceptance criteria:
+#### 1. Quality baseline — complete
 
 - `pnpm run lint` exits successfully.
-- Keyboard and screen-reader form navigation remains correct.
-- No visual regression occurs on desktop or mobile.
+- Form labels are explicitly associated with their controls.
+- Internal route navigation uses the framework link component.
+- Unused starter UI components and their unused mobile hook have been removed.
+- Source is formatted with the repository formatter.
 
 #### 2. Reduce rapid-build debt
 
 - Split the homepage into named, testable sections.
 - Break `globals.css` into a small token/base layer plus page or component styles when doing so reduces real maintenance cost.
-- Delete unused files under `components/ui` after confirming no imports reference them.
 - Preserve the brand imagery and the distinct Richmond/Rockies positioning during refactors.
 
-#### 3. Add tests and continuous integration
+#### 3. Expand tests and continuous integration
+
+**Initial baseline complete:** validation and sanitation have unit coverage, and GitHub runs lint, unit tests, and the production build on pull requests and pushes to `main`.
 
 Minimum useful coverage:
 
-- API validation and sanitization tests
+- API route integration tests
 - Richmond service-form success and failure paths
 - Rockies service-form success and failure paths
 - Professional-application success and failure paths
 - Route smoke tests
-- A production-build check on pull requests
+- Browser-level accessibility and route smoke tests
 
 Acceptance criteria:
 
@@ -213,9 +216,10 @@ Acceptance criteria:
 
 ### P2 — instrument growth and strengthen the funnel
 
+- **Complete:** generated `sitemap.xml` and `robots.txt`
+- **Complete:** structured business/service data and route metadata
 - Install GA4 and connect Search Console.
 - Track market selection, primary CTA clicks, form starts, form errors, successful submissions, phone clicks, and email clicks.
-- Add `sitemap.xml`, `robots.txt`, and appropriate structured data.
 - Validate social previews against the production domain.
 - Optimize image formats and loading without degrading brand quality.
 - Add conversion-focused market content only when operations can fulfill the demand it creates.
@@ -289,7 +293,7 @@ Acceptance criteria:
 1. Branch from `main` using a short purpose-based branch name.
 2. Keep generated build output, local environment files, and credentials untracked.
 3. Open a pull request that explains the user-facing and operational impact.
-4. Require a passing lint, test, and production build before merge once CI exists.
+4. Require the existing GitHub lint, test, and production-build job to pass before merge.
 5. Verify forms on the deployed preview with non-sensitive test data.
 6. Merge, deploy through the managed Sites project, and run the production smoke checklist.
 
@@ -310,23 +314,23 @@ Do not delete or recreate `.openai/hosting.json` casually: it associates this re
 
 ## Suggested first three development sessions
 
-### Session 1: understand and stabilize
+### Session 1: connect the accounts
 
-- Run the site locally and complete all three form paths.
-- Read the API route, database schema, and deployment configuration.
 - Confirm Housecall Pro plan/API access and Airtable ownership.
-- Document the production credential and environment-variable plan.
+- Choose a Zapier Catch Hook or MaidFlex integration endpoint.
+- Configure the two server-side environment values described in `INTEGRATION_SETUP.md`.
+- Build the Housecall Pro and Airtable field mappings.
 
-### Session 2: connect revenue leads
+### Session 2: verify the operating loop
 
-- Implement idempotent Housecall Pro delivery for service requests.
-- Add owner notification and failure recovery.
-- Demonstrate one Richmond and one Rockies submission end to end.
+- Demonstrate one Richmond request, one Rockies request, and one professional application end to end.
+- Verify owner notifications, external record IDs, and duplicate prevention.
+- Force a delivery failure and confirm the record can be recovered from D1.
 
-### Session 3: connect recruiting and establish quality gates
+### Session 3: prepare fulfillment automation
 
-- Implement Airtable delivery for professional applications.
-- Fix application-code accessibility/lint findings.
-- Add the first API/form tests and pull-request build check.
+- Add the first-response escalation and delivery-retry workflow.
+- Connect approved HCP estimates/jobs to the fulfillment checklist and provider roster.
+- Add browser-level route and form tests around the deployed preview.
 
 At that point MaidFlex Pro will have the essential loop: demand enters, the right operator sees it, fulfillment can be organized, and failures are visible instead of silent.
